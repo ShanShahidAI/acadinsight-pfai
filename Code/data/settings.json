@@ -1,0 +1,51 @@
+{
+  "attendance_threshold": 75.0,
+  "grade_scale": [
+    {
+      "minimum": 85,
+      "letter": "A",
+      "point": 4.0
+    },
+    {
+      "minimum": 80,
+      "letter": "A-",
+      "point": 3.67
+    },
+    {
+      "minimum": 75,
+      "letter": "B+",
+      "point": 3.33
+    },
+    {
+      "minimum": 70,
+      "letter": "B",
+      "point": 3.0
+    },
+    {
+      "minimum": 65,
+      "letter": "B-",
+      "point": 2.67
+    },
+    {
+      "minimum": 60,
+      "letter": "C+",
+      "point": 2.33
+    },
+    {
+      "minimum": 55,
+      "letter": "C",
+      "point": 2.0
+    },
+    {
+      "minimum": 50,
+      "letter": "D",
+      "point": 1.0
+    },
+    {
+      "minimum": 0,
+      "letter": "F",
+      "point": 0.0
+    }
+  ],
+  "policy_note": "DEMO SETTINGS ONLY. Replace using the official course grading scale and assessment weights."
+}

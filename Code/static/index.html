@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AcadInsight | Smart Student Performance Analyzer</title>
+<link rel="stylesheet" href="/static/app.css"/></head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-icon">A<span>•</span></div><div><strong>AcadInsight</strong><small>ACADEMIC ANALYTICS</small></div></div>
+    <div class="side-label">WORKSPACE</div>
+    <nav id="navigation" aria-label="Main navigation">
+      <button class="nav active" data-view="overview"><span class="ico">◫</span> Overview</button>
+      <button class="nav" data-view="records"><span class="ico">▦</span> Students &amp; Subjects</button>
+      <button class="nav" data-view="marks"><span class="ico">✎</span> Assessment Marks</button>
+      <button class="nav" data-view="attendance"><span class="ico">▥</span> Attendance</button>
+      <button class="nav" data-view="gpa"><span class="ico">◉</span> GPA / CGPA</button>
+      <button class="nav" data-view="reports"><span class="ico">▤</span> Visual Reports</button>
+      <button class="nav" data-view="settings"><span class="ico">⚙</span> Grading Settings</button>
+    </nav>
+    <div class="sidebar-bottom"><span class="status-dot"></span> Runs locally · No internet needed<div class="side-meta">PFAI / 3rd Semester / AI-3-1</div></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div class="top-intro"><div class="eyebrow">RIPHAH INTERNATIONAL UNIVERSITY · PROJECT DEMO</div><h1 id="pageTitle">Academic overview</h1></div>
+      <div class="top-actions"><label class="select-label" for="studentSelect">Selected student</label><select id="studentSelect" aria-label="Selected student"></select><div class="avatar">AI</div></div>
+    </header>
+    <div class="body">
+      <div class="notice"><span class="notice-icon">i</span><span><b>Demonstration policy:</b> Grades, assessment weights and attendance thresholds are configurable examples — verify official university rules before using real results.</span></div>
+      <section class="view active" id="view-overview">
+        <div class="welcome"><div class="eyebrow light">ONE DASHBOARD. CLEARER PROGRESS.</div><h2>Make every mark<br/>count.</h2><p>Track subjects, understand grades and act on attendance in one simple place.</p><button class="white-button" data-go="marks">Add assessment marks <span>→</span></button><div class="welcome-art" aria-hidden="true"><div class="art-glow"></div><div class="art-chart"><i style="height:40%"></i><i style="height:65%"></i><i style="height:50%"></i><i style="height:82%"></i><i style="height:92%"></i></div></div></div>
+        <div class="section-header"><h3>Performance snapshot</h3><span class="muted">Live from local CSV data</span></div>
+        <div class="metric-grid" id="metrics"></div>
+        <div class="two-cols"><article class="panel"><div class="panel-head"><h3>Subject results</h3><span class="pill">Final grades</span></div><img class="chart" id="overviewGrade" alt="Subject percentage chart"/></article><article class="panel"><div class="panel-head"><h3>Attendance monitor</h3><span class="pill">By subject</span></div><img class="chart" id="overviewAttendance" alt="Attendance percentage chart"/></article></div>
+        <div class="panel"><div class="panel-head"><h3>Study recommendations</h3><span class="pill warm">Rule-based insights</span></div><div id="tips"></div></div>
+      </section>
+      <section class="view" id="view-records"><div class="section-header"><h2>Students &amp; Subjects</h2><span class="muted">Organize your academic profile</span></div>
+        <div class="two-cols"><article class="panel"><h3>Add a student</h3><form id="studentForm" class="form-grid"><label>Full name<input name="name" placeholder="Student name" required maxlength="140"/></label><label>Program<input name="program" value="BS Artificial Intelligence" required/></label><label>Section<input name="section" value="AI/3-1" required/></label><button class="primary" type="submit">Save student</button></form></article>
+        <article class="panel"><h3>Add a subject</h3><form id="subjectForm" class="form-grid"><label>Code<input name="code" placeholder="PFAI101" required/></label><label>Subject name<input name="name" placeholder="Programming for AI" required/></label><label>Credit hours<input name="credits" type="number" min="0.5" max="12" step="0.5" value="3" required/></label><button class="primary" type="submit">Save subject</button></form></article></div>
+        <article class="panel"><div class="panel-head"><h3>Registered subjects</h3><span class="pill">Selected student</span></div><div class="table-scroll"><table><thead><tr><th>Code</th><th>Subject</th><th>Credits</th><th>Status</th><th>Action</th></tr></thead><tbody id="subjectsTable"></tbody></table></div></article>
+      </section>
+      <section class="view" id="view-marks"><div class="section-header"><h2>Assessment Marks</h2><span class="muted">Quizzes · Assignments · Midterms · Finals</span></div>
+        <article class="panel"><h3>Add or update a component</h3><p class="muted">Each component has a score, maximum marks and a percentage weight. Total weight cannot exceed 100%; a final GPA needs exactly 100%.</p><form id="marksForm" class="form-grid three"><label>Subject<select name="subject_id" class="subjects-select" required></select></label><label>Assessment component<input name="component" placeholder="Quiz / Assignment / Midterm / Final" required/></label><label>Obtained marks<input name="obtained" type="number" min="0" step="0.01" required/></label><label>Maximum marks<input name="max_marks" type="number" min="0.001" step="0.01" required/></label><label>Weight (%)<input name="weight" type="number" min="0" max="100" step="0.01" required/></label><div class="form-submit"><button class="primary" type="submit">Save assessment</button></div></form></article>
+        <article class="panel"><div class="panel-head"><h3>Current grade calculation</h3><span class="pill">Weighted and transparent</span></div><div class="table-scroll"><table><thead><tr><th>Subject</th><th>Assessment weights</th><th>Current estimate</th><th>Final result</th></tr></thead><tbody id="marksTable"></tbody></table></div><p class="caption-note">Example: 18/20 with a 20% weight contributes 18 percentage points. The final subject percent is the sum of contributions when total weight is 100%.</p></article>
+      </section>
+      <section class="view" id="view-attendance"><div class="section-header"><h2>Attendance Tracker</h2><span class="muted">Simple attendance alerts</span></div>
+        <div class="two-cols"><article class="panel"><h3>Add or update attendance</h3><form id="attendanceForm" class="form-grid"><label>Subject<select name="subject_id" class="subjects-select" required></select></label><label>Classes attended<input name="attended" type="number" min="0" step="1" required/></label><label>Total classes held<input name="held" type="number" min="0" step="1" required/></label><button class="primary" type="submit">Update attendance</button></form></article><article class="panel attention-card"><div class="attention-icon">!</div><h3>Stay ahead of shortages</h3><p>AcadInsight marks subjects below the configured attendance threshold and suggests action. This is an informational alert, not an official attendance decision.</p><div class="big-small" id="attendanceThresholdLabel">75% <small>example threshold</small></div></article></div>
+        <article class="panel"><h3>Attendance by subject</h3><div class="table-scroll"><table><thead><tr><th>Subject</th><th>Attended / Held</th><th>Attendance</th><th>Flag</th></tr></thead><tbody id="attendanceTable"></tbody></table></div></article>
+      </section>
+      <section class="view" id="view-gpa"><div class="section-header"><h2>GPA &amp; CGPA</h2><span class="muted">Credit-weighted calculations</span></div>
+        <div class="two-cols"><article class="panel"><div class="eyebrow">CURRENT SEMESTER</div><div class="gpa-number" id="semesterGpa">—</div><p>Semester GPA = Σ (grade points × course credits) / Σ course credits.</p><div class="inline-note" id="completeNote"></div></article><article class="panel"><div class="eyebrow">CUMULATIVE ESTIMATE</div><div class="gpa-number" id="cumulativeGpa">—</div><p>CGPA estimate combines entered past semester credits/GPA with graded current subjects.</p></article></div>
+        <article class="panel"><h3>Add or update a previous semester</h3><form id="previousForm" class="form-grid four"><label>Semester title<input name="title" placeholder="Semester 1" required/></label><label>Earned/graded credits<input name="credits" type="number" min="0.5" step="0.5" required/></label><label>Semester GPA (0 to 4)<input name="gpa" type="number" min="0" max="4" step="0.01" required/></label><div class="form-submit"><button class="primary" type="submit">Save semester</button></div></form></article>
+        <article class="panel"><div class="panel-head"><h3>Previous semesters</h3><span class="pill">Credit-weighted</span></div><div class="table-scroll"><table><thead><tr><th>Semester</th><th>Credits</th><th>GPA</th></tr></thead><tbody id="previousTable"></tbody></table></div></article>
+      </section>
+      <section class="view" id="view-reports"><div class="section-header"><h2>Visual Reports</h2><span class="muted">Generated with Matplotlib</span></div>
+      <div class="three-graphs"><article class="panel"><h3>Subject percentage comparison</h3><img class="chart" id="reportGrades" alt="Grade comparison chart"/></article><article class="panel"><h3>Subject attendance</h3><img class="chart" id="reportAttendance" alt="Attendance comparison chart"/></article><article class="panel wide"><h3>Assessment score trends</h3><p class="muted">Normalized assessment percentages. These compare component scores, not predicted future performance.</p><img class="chart" id="reportAssessments" alt="Assessment component trend chart"/></article></div>
+      <article class="panel"><div class="panel-head"><h3>Download CSV records</h3><span class="pill">Editable in Excel</span></div><div class="download-row"><a class="download" href="/api/export?table=students">Students CSV ↧</a><a class="download" href="/api/export?table=subjects">Subjects CSV ↧</a><a class="download" href="/api/export?table=assessments">Marks CSV ↧</a><a class="download" href="/api/export?table=attendance">Attendance CSV ↧</a><a class="download" href="/api/export?table=previous_semesters">Previous GPA CSV ↧</a></div></article>
+      </section>
+      <section class="view" id="view-settings"><div class="section-header"><h2>Grading Settings</h2><span class="muted">Use your institution's approved rules</span></div>
+        <article class="panel"><div class="notice darker"><span class="notice-icon">!</span><span>There is no official Riphah grading/assessment policy in the supplied proposal. These defaults are for demonstration only. Replace them with approved values before interpreting real grades.</span></div>
+          <form id="settingsForm"><div class="form-grid"><label>Attendance alert threshold (%)<input type="number" name="attendance_threshold" id="thresholdInput" min="0" max="100" step="0.1" required/></label></div><h3>Grade bands</h3><p class="muted">One grade per row, ordered from highest to lowest. Each row needs a minimum percentage, letter and point value (0–4).</p><div id="gradeBands"></div><button type="button" class="subtle-button" id="addBand">+ Add grade band</button><div class="mt"><button class="primary" type="submit">Save grading settings</button></div></form>
+          <div class="mt danger-area"><b>Restore fictional demonstration data</b><p class="muted">This replaces current CSV records and settings. Export anything important first.</p><button class="danger" id="resetDemo">Reset all to example records</button></div>
+        </article>
+      </section>
+      <footer>ACADINSIGHT · SMART STUDENT PERFORMANCE ANALYZER <span>Made for Programming for AI · Offline educational demo</span></footer>
+    </div>
+  </main>
+</div>
+<div class="toast" role="status" id="toast" aria-live="polite"></div>
+<script src="/static/app.js"></script>
+</body></html>

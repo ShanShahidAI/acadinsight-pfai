@@ -1,0 +1,9 @@
+id,student_id,code,name,credits
+ST-001-PFAI101,ST-001,PFAI101,Programming for AI,3
+ST-001-DSA201,ST-001,DSA201,Data Structures,3
+ST-001-AI201,ST-001,AI201,Artificial Intelligence,3
+ST-001-CAL201,ST-001,CAL201,Multivariable Calculus,3
+ST-002-PFAI101,ST-002,PFAI101,Programming for AI,3
+ST-002-DSA201,ST-002,DSA201,Data Structures,3
+ST-002-AI201,ST-002,AI201,Artificial Intelligence,3
+ST-002-CAL201,ST-002,CAL201,Multivariable Calculus,3
